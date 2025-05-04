@@ -39,6 +39,7 @@ st_write(route, 'route-ls-1.gpkg', append = F)
 
 chai_route <- smoothr::smooth(route, method = "chaikin")
 st_write(chai_route, 'route-ls-chai.gpkg', append = F)
+unlink('route-ls-1.gpkg')
 
 rm(route)
 # create segments to assign to locations later. 
@@ -54,6 +55,7 @@ split_lines <- st_transform(split_lines, 4326) |>
   mutate(ID = 1:n())
 
 st_write(split_lines, 'route-split.gpkg', append = F)
+unlink('route-ls-chai.gpkg')
 
 rm(segs, sample_points, chai_route)
 # and more iterations on the above to get a product I liked. 
@@ -82,7 +84,6 @@ route_dates <- places[4:25,'location.english'] |>
       )
   )
 
-
 library(data.table)
 split_lines <- data.table(split_lines)
 route_dates <- data.table(route_dates)
@@ -90,46 +91,15 @@ route_dates <- data.table(route_dates)
 setkey(split_lines, ID)
 setkey(route_dates, Start)
 
-obb <- route_dates[split_lines, roll = T] |>
+route_dates <- route_dates[split_lines, roll = T] |>
   mutate(Destination = if_else(Start > 2814, 'San Diego', Destination)) |>
   select(Destination, geometry = result) |>
-  st_as_sf()
+  st_as_sf() |>
+  group_by(Destination) |>
+  summarize(geometry = st_union(geometry))
+
+st_write(route_dates, 'route_by_day.gpkg', append = FALSE)
 
 ##### Markers
 
 # these are points discussed in the book, generally in passing. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-line <- st_sfc(st_linestring(matrix(c(0, 0, 5000, 0), ncol = 2, byrow = TRUE)), 
-               crs = 32633)  # UTM zone 33N
-
-segment_length <- 1000  
-
-# Calculate number of segments
-line_length <- st_length(line)
-n_segments <- as.numeric(line_length) %/% segment_length
-
-# Generate sampling points at regular distances along the line
-sample_points <- st_line_sample(line, n = n_segments, type = "regular")
-
-split_lines <- lwgeom::st_split(line, sample_points) %>% 
-  st_collection_extract("LINESTRING")
