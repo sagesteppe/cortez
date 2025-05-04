@@ -3,6 +3,8 @@ setwd('~/Documents/cortez/data-raw')
 library(sf)
 library(tidyverse)
 library(smoothr)
+library(usethis)
+library(data.table)
 
 places <- read.csv('Places.csv') |>
   st_as_sf(coords = c('longitude', 'latitude'), crs = 4326)
@@ -11,8 +13,7 @@ ggplot() +
   geom_sf(data = places)
 
 st_write(places, 'places.gpkg', append = FALSE)
-#usethis::use_data(DATASET, overwrite = TRUE)
-
+usethis::use_data(places, overwrite = TRUE)
 
 ################################################################################
 ## Route of the Western Flyer!!!
@@ -84,22 +85,23 @@ route_dates <- places[4:25,'location.english'] |>
       )
   )
 
-library(data.table)
 split_lines <- data.table(split_lines)
 route_dates <- data.table(route_dates)
 
 setkey(split_lines, ID)
 setkey(route_dates, Start)
 
-route_dates <- route_dates[split_lines, roll = T] |>
+route_destinations <- route_dates[split_lines, roll = T] |>
   mutate(Destination = if_else(Start > 2814, 'San Diego', Destination)) |>
   select(Destination, geometry = result) |>
   st_as_sf() |>
   group_by(Destination) |>
   summarize(geometry = st_union(geometry))
 
-st_write(route_dates, 'route_by_day.gpkg', append = FALSE)
+st_write(route_destinations, 'route_by_day.gpkg', append = FALSE)
+rm(split_lines)
 
+usethis::use_data(route_destinations, overwrite = TRUE)
 ##### Markers
 
 # these are points discussed in the book, generally in passing. 
