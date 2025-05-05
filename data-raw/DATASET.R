@@ -105,3 +105,5 @@ usethis::use_data(route_destinations, overwrite = TRUE)
 ##### Markers
 
 # these are points discussed in the book, generally in passing. 
+
+
