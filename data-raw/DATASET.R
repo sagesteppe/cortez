@@ -102,8 +102,11 @@ st_write(route_destinations, 'route_by_day.gpkg', append = FALSE)
 rm(split_lines)
 
 usethis::use_data(route_destinations, overwrite = TRUE)
+
+
 ##### Markers
 
 # these are points discussed in the book, generally in passing. 
+
 
 
