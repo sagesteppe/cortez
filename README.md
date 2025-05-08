@@ -27,4 +27,16 @@ Note that (Amanda Chengs delightful story map)[https://storymaps.arcgis.com/stor
 As mentioned, I use this data set for testing our cartographic approaches. 
 If you are a marine biologist, into data viz, or mariner and think you have some insight - but are hesitant about this whole Github thing - shoot me an email and we'll try and figure out how to incorporate your insight. 
 
+## Works Cited
 
+Brusca, Richard C. "The 1940 Ricketts-Steinbeck Sea of Cortez Expedition, with annotated lists of species and collection sites." Journal of the Southwest 62, no. 2 (2020): 218-334.
+
+[freely available here](https://naturalhistory.si.edu/sites/default/files/media/file/brusca2020seaofcortezexpeditionwithjswfrontmatter.pdf)
+
+Sagarin, Raphael D., William F. Gilly, Charles H. Baxter, Nancy Burnett, and Jon Christensen. "Remembering the Gulf: changes to the marine communities of the Sea of Cortez since the Steinbeck and Ricketts expedition of 1940." Frontiers in Ecology and the Environment 6, no. 7 (2008): 372-379.
+
+[An open-access *nearly* final version is here](https://www.geo.arizona.edu/rcncrd/documents/Remembering_the_Gulf_Pub_Fe_08.pdf)
+
+Steinbeck, John. The log from the Sea of Cortez. Penguin, 1995 
+
+[Available from][your local library](https://www.mapdevelopers.com/us-public-library-map.php), [an independent bookstore](https://www.theindependentbookseller.com/bookstore-map.html), or [Barnes & Noble](https://stores.barnesandnoble.com/?view=map). 
