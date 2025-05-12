@@ -30,7 +30,8 @@ library(tidyverse)
 The places visited by the collectors can be loaded using `places`, and the route they took (which I made up) can be loaded via `routes``. 
 
 ```{r}
-places <- data(places)
+data(places)
+head(places)
 ```
 
 Because the package is attached we can also just start using the data, which is currently held as a promise. 
@@ -38,8 +39,10 @@ Because the package is attached we can also just start using the data, which is 
 ```{r}
 data(route)
 
+route <- left_join(route, st_drop_geometry(places), by = c('Destination' = 'location.english'))
+
 ggplot() + 
-  geom_sf(data = route)
+  geom_sf(data = route, aes(color  = date_arrive))
 ```
 
 
