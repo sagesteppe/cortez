@@ -1,0 +1,26 @@
+---
+title: "PenguinClassicsMap"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{PenguinClassicsMap}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+```{r}
+devtools::install_github('sagesteppe/cortez')
+```
+
+```{r setup}
+library(cortez)
+library(sf)
+library(tidyverse)
+```
