@@ -27,11 +27,19 @@ library(sf)
 library(tidyverse)
 ```
 
-The places visited by the collectors can be loaded using ``, and the route they took (which I made up) can be loaded via ``. 
+The places visited by the collectors can be loaded using `places`, and the route they took (which I made up) can be loaded via `routes``. 
 
 ```{r}
-
-data(places)
-
+places <- data(places)
 ```
+
+Because the package is attached we can also just start using the data, which is currently held as a promise. 
+
+```{r}
+data(route)
+
+ggplot() + 
+  geom_sf(data = route)
+```
+
 
