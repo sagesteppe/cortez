@@ -38,11 +38,11 @@ Because the package is attached we can also just start using the data, which is 
 
 ```{r}
 data(route)
+plot(route[,'date_arrive'])
 
 route <- left_join(route, st_drop_geometry(places), by = c('Destination' = 'location.english'))
-
 ggplot() + 
-  geom_sf(data = route, aes(color  = date_arrive))
+  geom_sf(data = route, aes(color = date_arrive))
 ```
 
 
