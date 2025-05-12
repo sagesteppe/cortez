@@ -91,17 +91,17 @@ route_dates <- data.table(route_dates)
 setkey(split_lines, ID)
 setkey(route_dates, Start)
 
-route_destinations <- route_dates[split_lines, roll = T] |>
+route <- route_dates[split_lines, roll = T] |>
   mutate(Destination = if_else(Start > 2814, 'San Diego', Destination)) |>
   select(Destination, geometry = result) |>
   st_as_sf() |>
   group_by(Destination) |>
   summarize(geometry = st_union(geometry))
 
-st_write(route_destinations, 'route_by_day.gpkg', append = FALSE)
+st_write(route, 'route.gpkg', append = FALSE)
 rm(split_lines)
 
-usethis::use_data(route_destinations, overwrite = TRUE)
+usethis::use_data(route, overwrite = TRUE)
 
 
 ##### Markers

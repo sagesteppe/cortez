@@ -19,8 +19,19 @@ knitr::opts_chunk$set(
 devtools::install_github('sagesteppe/cortez')
 ```
 
+The Penguin Classics map has many wonderful attributes worth emulating. 
+
 ```{r setup}
 library(cortez)
 library(sf)
 library(tidyverse)
 ```
+
+The places visited by the collectors can be loaded using ``, and the route they took (which I made up) can be loaded via ``. 
+
+```{r}
+
+data(places)
+
+```
+
